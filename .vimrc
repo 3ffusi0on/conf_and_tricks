@@ -1,0 +1,115 @@
+" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually just
+" /usr/share/vim/vimcurrent/archlinux.vim) and sourced by the call to :runtime
+" you can find below.  If you wish to change any of those settings, you should
+" do it in this file (/etc/vim/vimrc), since archlinux.vim will be overwritten
+" everytime an upgrade of the vim packages is performed.  It is recommended to
+" make changes after sourcing archlinux.vim since it alters the value of the
+" 'compatible' option.
+
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages available in Debian.
+runtime! archlinux.vim
+
+" Vim5 and later versions support syntax highlighting. Uncommenting the
+" following enables syntax highlighting by default.
+if has("syntax")
+  syntax on
+endif
+
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+"au! BufRead,BufNewFile *.haml         setfiletype haml 
+
+if has("gui_running")
+  color torte
+  set guioptions-=m
+  set guioptions-=T
+  set guioptions-=R
+  set guioptions-=r
+endif
+
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set autowrite		" Automatically save before commands 
+set cindent
+set shiftwidth=4
+set nonumber		" this takes too much cols
+set hlsearch
+set splitbelow
+set splitright
+set ruler
+set foldmethod=marker
+set background=dark
+"set backspace=start " this fixes the weird behaviour of the backspace key
+set title
+set nocompatible
+set encoding=utf-8
+set number	"line number
+set mouse=""	" disable mouse support
+
+" Source a global configuration file if available
+if filereadable("/etc/vim/vimrc.local")
+  source /etc/vim/vimrc.local
+endif
+
+set path+=include/
+set path+=src/
+
+" Epitech conf
+if filereadable($HOME."/.vim/vimrc.epitech")
+   source $HOME/.vim/vimrc.epitech
+endif
+
+"if filereadable($HOME."/.vim/vimrc.exam")
+   "source $HOME/.vim/vimrc.exam
+"endif
+
+function! s:insert_auto_include_protector()
+  let header_name = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  execute ":set paste"
+  "execute "normal! o"
+  execute "normal! i#ifndef " . header_name
+  execute "normal! o#define " . header_name
+  execute "normal! 3o"
+  execute "normal! o#endif /* " . header_name . " */"
+  execute "normal! 2k"
+  execute ":set nopaste"
+endfunction
+autocmd BufNewFile *.{h,hpp,hh} call <SID>insert_auto_include_protector()
+
+autocmd BufRead,BufNewFile *.s set filetype=nasm
+
+" Workaround to avoid color problems at startup 
+if &term =~ "xterm"
+    set term=xterm-256color
+endif
+
+if v:version > 700
+    set cursorline
+    hi CursorLine cterm=none ctermbg=17
+endif
+
+hi Comment cterm=none ctermfg=blue ctermbg=none
+hi Folded cterm=none ctermfg=blue ctermbg=none
+hi StorageClass cterm=bold ctermfg=yellow 
+
+hi Namespace cterm=none ctermfg=red ctermbg=none
+hi VertSplit cterm=none ctermfg=blue
+
+" insertion 1 character (Space key)
+noremap <silent> <space> :exe "normal i".nr2char(getchar())<CR>
+
+" Theme
+"colorscheme Mustang_Vim_Colorscheme_by_hcalves
+

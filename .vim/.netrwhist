@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/simon_p/Perso/CTF_Crypto'
+let g:netrw_dirhist_2='/home/simon_p/hackathon/hackaton/app/scripts/controllers'
+let g:netrw_dirhist_3='/home/simon_p/.config/awesome'
