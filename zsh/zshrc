@@ -1,20 +1,16 @@
+#####
 #
-# Custom conf file by 3ffusi0on
+# Custom zsh configuration file by 3ffusi0on
 #
+####
 
-#cat ~/TODO
-#CACA
-alias grep="grep --color=auto -Hn"
-
-# Variables
+#### Variables# {{{
 export EDITOR=vim
     #Ruby PATH
 export PATH="$PATH":/home/simon_p/.gem/ruby/2.1.0/bin
     #Lua PATH
 export LUA_DIR=/usr/lib/lua
-
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+# }}}
 
 # Alias# {{{
 alias ls='ls --color=auto'
@@ -32,9 +28,7 @@ alias aer='ssh -i .ssh/id_rsa aer@10.18.207.231'
 alias cal='cal -m --three'
 
 alias mnt='sudo mount /dev/sdc1 /mnt'
-
-#export CFLAGS="-D LOGS"
-unset CFLAGS
+alias grep="grep --color=auto -Hn"
 # }}}
 
 # Working Specials Key# {{{
@@ -78,13 +72,6 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 fi
 #}}}
 
-#UPDATE TIME
-alias up="sudo /usr/sbin/ntpdate ntp-p1.obspm.fr"
-
-#autoload -Uz promptinit
-#promptinit
-#prompt walters
-
 #COLOR# {{{
 eval `TERM=xterm-256color dircolors -b`
 RED="%{"$'\033[01;31m'"%}"
@@ -94,13 +81,9 @@ YELLOW="%{"$'\033[01;33m'"%}"
 NORM="%{"$'\033[00m'"%}"
 # }}}
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
+#### Completion# {{{
 zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete 
+zstyle ':completion:*' completer _expand _complete
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
@@ -121,25 +104,31 @@ zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
 zstyle ':completion::complete:*' use-cache 1
+# }}}
+
+##### Some stuff# {{{
 
 # Set Historique
 export HISTSIZE=1000
 export SAVEHIST=1000
 export HISTFILE=~/.history
 setopt inc_append_history
+
 # Doeas not save the same cmd many times
 setopt hist_ignore_all_dups
 
-#autocd (ex : pour changer de répertoire : /usr/in, pas besoin de cd avant)
+#autocd (ex : .. same as cd ..)
 setopt autocd
-#utilisation de regex dans le shell (ex : cp *.(tar|bz) .)
+
+#utilisation of regex in shell (ex : cp *.(tar|bz) .)
 setopt extendedglob
 
 autoload -U compinit && compinit
 
 ulimit -c unlimited
+# }}}
 
-##### Prompt
+##### Prompt# {{{
 autoload -U promptinit
 promptinit
 setopt promptsubst
@@ -175,7 +164,7 @@ RPS1+='%B%F{green}${ps1_path} '		 # Path
 RPS1+="%F{default}%b"			 # Restore normal font
 export RPS1
 setopt transient_rprompt
-    
+
 function precmd {
     # Terminal title
     case $TERM in
@@ -195,3 +184,4 @@ function precmd {
     fi
     export ps1_path
 }
+# }}}
