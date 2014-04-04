@@ -13,20 +13,20 @@ export LUA_DIR=/usr/lib/lua
 # }}}
 
 # Alias# {{{
-alias ls='ls --color=auto'
+## I'm very lazy
 alias g='git'
-alias vi='vim'
-alias ll='ls -l'
-alias la='ls -A'
-alias 5='python2.7 ~/Documents/my_tester *'
-alias l='ls -1 --ignore="*.o"'
+alias c='cat'
+alias p='ping www.google.fr'
+
+## usefull protection ;-)
 alias rm='mkdir -p ~/Trash/$PWD ; mv -t ~/Trash/$PWD'
 alias rm_='/bin/rm'
-alias son='echo "pavucontrol"'
-alias p='ping google.fr'
-alias aer='ssh -i .ssh/id_rsa aer@10.18.207.231'
-alias cal='cal -m --three'
 
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -1 --ignore="*.o"'
+alias cal='cal -m --three'
 alias mnt='sudo mount /dev/sdc1 /mnt'
 alias grep="grep --color=auto -Hn"
 # }}}
@@ -34,6 +34,10 @@ alias grep="grep --color=auto -Hn"
 # Working Specials Key# {{{
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
+
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
 typeset -A key
 
 key[Home]=${terminfo[khome]}
@@ -72,7 +76,7 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
 fi
 #}}}
 
-#COLOR# {{{
+##### COLOR# {{{
 eval `TERM=xterm-256color dircolors -b`
 RED="%{"$'\033[01;31m'"%}"
 GREEN="%{"$'\033[01;32m'"%}"
@@ -81,7 +85,7 @@ YELLOW="%{"$'\033[01;33m'"%}"
 NORM="%{"$'\033[00m'"%}"
 # }}}
 
-#### Completion# {{{
+##### Completion# {{{
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete
 zstyle ':completion:*' format 'Completing %d'
