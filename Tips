@@ -1,0 +1,55 @@
+#################################
+#           Random
+#################################
+
+#copy to the clic board
+xclip -sel clip < TextToCopy
+
+#Random playlist mplayer
+find -type f -iname \*.mp3 > playlist.txt && mplayer -shuffle -playlist playlist.txt
+
+#################################
+#           GIT
+#################################
+
+#How to undo the last git add?
+git reset
+
+#How to edit an incorrect commit message in Git?
+git commit --amend -m "New commit message"
+    OR
+git reset --soft HEAD^
+git commit -c ORIG_HEAD
+
+#How to squash my last X commits together using git?
+git rebase -i <after-this-commit>
+
+#How to cancel a local git commit?
+git reset HEAD^
+
+#How to remove local commited branches ?
+git remote prune origin
+
+#################################
+#           ZSH / BASH
+#################################
+
+#clear the entire line
+[Ctrl][U]
+
+#delete the word IN FRONT of the cursor
+[Ctrl][W]
+
+#delete the word AFTER the cursor
+[Alt][D]
+
+
+#################################
+#           Pacman
+#################################
+
+#installed as dependencies for packages that are no longer installed
+pacman -Qdt
+
+#remove all of those
+pacman -Rsn $(pacman -Qqdt)
