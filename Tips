@@ -30,6 +30,12 @@ git reset HEAD^
 #How to remove local commited branches ?
 git remote prune origin
 
+#Undo local branch delete
+    #find the <sha1> of the branch with:
+    git reflog
+    #then
+    git branch <BranchName> <sha1>
+
 #################################
 #           ZSH / BASH
 #################################
@@ -43,6 +49,14 @@ git remote prune origin
 #delete the word AFTER the cursor
 [Alt][D]
 
+#Move one word BACKWARD
+[Alt][B]
+
+#Move one word FORWARD
+[Alt][F]
+
+#Undo the last change
+[Ctrl][_]
 
 #################################
 #           Pacman
