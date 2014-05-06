@@ -17,7 +17,7 @@ git reset
 
 #How to edit an incorrect commit message in Git?
 git commit --amend -m "New commit message"
-    OR
+    #OR
 git reset --soft HEAD^
 git commit -c ORIG_HEAD
 
@@ -36,28 +36,55 @@ git remote prune origin
     #then
     git branch <BranchName> <sha1>
 
+#Pull their version without merge conflicts
+git pull -s recursive -X theirs --rebase origin <BranchName>
+
 #################################
 #           ZSH / BASH
 #################################
 
 #clear the entire line
-[Ctrl][U]
+[Ctrl][u]
 
 #delete the word IN FRONT of the cursor
-[Ctrl][W]
-
-#delete the word AFTER the cursor
-[Alt][D]
-
-#Move one word BACKWARD
-[Alt][B]
-
-#Move one word FORWARD
-[Alt][F]
+[Ctrl][w]
 
 #Undo the last change
 [Ctrl][_]
 
+#Stop search
+[Ctrl][j]
+
+#Delete the word AFTER the cursor
+[Alt][d]
+
+#Delete from cursor to beginning of the word
+
+#Move one word
+[Alt][b]
+[Alt][f]
+
+#Complete and search in history
+[Alt][n]
+[Alt][p]
+
+#Completing history word
+[Alt][,]
+
+#Move to next space
+[Alt][l]
+
+#Add '' around all the current text
+[Alt][']
+
+#Swap two word
+[Alt][t]
+
+#Capitalize the next word
+[Alt][u]
+
+#Open man for 1st word
+[Alt][h]
 #################################
 #           Pacman
 #################################
@@ -67,3 +94,10 @@ pacman -Qdt
 
 #remove all of those
 pacman -Rsn $(pacman -Qqdt)
+
+#################################
+#           Pacman
+#################################
+
+# Delete all trailing whitespace (at the end of each line)
+:%s/\s\+$//
