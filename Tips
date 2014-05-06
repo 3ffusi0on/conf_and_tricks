@@ -96,7 +96,7 @@ pacman -Qdt
 pacman -Rsn $(pacman -Qqdt)
 
 #################################
-#           Pacman
+#           Vim
 #################################
 
 # Delete all trailing whitespace (at the end of each line)
