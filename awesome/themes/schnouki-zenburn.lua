@@ -8,7 +8,7 @@
 
 -- {{{ Main
 theme = {}
-theme.wallpaper_dir = "/home/schnouki/images/wallpapers"
+theme.wallpaper_dir = "/home/simon_p/Pictures/wallpapers"
 -- }}}
 
 -- {{{ Styles
