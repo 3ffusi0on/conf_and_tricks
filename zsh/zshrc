@@ -6,6 +6,7 @@
 
 #### Variables# {{{
 export EDITOR=vim
+export BROWSER=chromium
     #Ruby PATH
 export PATH="$PATH":/home/simon_p/.gem/ruby/2.1.0/bin
     #Lua PATH
@@ -28,7 +29,12 @@ alias la='ls -A'
 alias l='ls -1 --ignore="*.o"'
 alias cal='cal -m --three'
 alias mnt='sudo mount /dev/sdc1 /mnt'
-alias grep="grep --color=auto -Hn"
+alias grep="grep --color=auto"
+alias grepp="grep -Hn"
+
+## fun
+alias mkplay="find -type f -iname \*.mp3 > playlist.txt"
+alias play="mplayer -shuffle -playlist playlist.txt"
 # }}}
 
 # Working Specials Key# {{{
