@@ -17,7 +17,7 @@ git reset
 
 #How to edit an incorrect commit message in Git?
 git commit --amend -m "New commit message"
-    #OR
+ #OR
 git reset --soft HEAD^
 git commit -c ORIG_HEAD
 
@@ -31,13 +31,17 @@ git reset HEAD^
 git remote prune origin
 
 #Undo local branch delete
-    #find the <sha1> of the branch with:
-    git reflog
-    #then
-    git branch <BranchName> <sha1>
+ #find the <sha1> of the branch with:
+  git reflog
+ #then
+  git branch <BranchName> <sha1>
 
 #Pull their version without merge conflicts
 git pull -s recursive -X theirs --rebase origin <BranchName>
+
+#Git diff against a stash
+git diff stash@{<number>} master
+git stash show -p stash@{<number>}
 
 #################################
 #           ZSH / BASH
