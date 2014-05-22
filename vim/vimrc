@@ -5,7 +5,7 @@
 " General
 "
 set nocompatible		" no vi-compatible mode
-filetype on			" detect the ype of the file
+filetype on			" detect the type of the file
 filetype plugin on		" load filetypes plugin
 set history=500			" history
 set cf				" enable error files and erro jumping
@@ -55,7 +55,7 @@ set novisualbell		" do not blink
 " Text formatting
 "
 "set fo=tcrqn
-"set autoindent			" autoindent
+set autoindent			" autoindent
 "set smartindent			" smartindent
 "set cindent			" c-style indenting
 set shiftwidth=4
@@ -117,4 +117,3 @@ autocmd BufWinLeave * call clearmatches()
 
 " insert 1 character (Space key)
 noremap <silent> <space> :exe "normal i".nr2char(getchar())<CR>
-
