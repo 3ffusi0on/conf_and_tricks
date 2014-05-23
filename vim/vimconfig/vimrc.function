@@ -1,3 +1,5 @@
+" Coded by https://github.com/duskCoder
+"
 " TODO do not duplicate the insert_header
 "
 function! s:insert_header_h()
@@ -12,10 +14,8 @@ function! s:insert_header_h()
 "   execute "normal! o** " .gatename. " for  in /home/simon_p"
 "   execute "normal! o** "
 "   execute "normal! o** Made by ".real_name
-"   execute "normal! o** Login   <".login."@epitech.net>"
 "   execute "normal! o** "
 "   execute "normal! o** Started on  ".start_date." ". real_name
-"   execute "normal! o** Last update ".last_date." ". real_name
 "   execute "normal! o*/"
 "   execute "normal! o"
 "   execute "normal! o"
@@ -35,10 +35,8 @@ function! s:insert_header_c()
 "   execute "normal! o** " .gatename. " for  in /home/simon_p"
 "   execute "normal! o** "
 "   execute "normal! o** Made by ".real_name
-"   execute "normal! o** Login   <".login."@epitech.net>"
 "   execute "normal! o** "
 "   execute "normal! o** Started on  ".start_date." ". real_name
-"   execute "normal! o** Last update ".last_date." ". real_name
 "   execute "normal! o*/"
 "   execute "normal! o"
 "   execute "normal! o"
@@ -58,7 +56,6 @@ function! s:insert_header_cpp()
 "   execute "normal! o// " .gatename. " for  in " .pathname
 "   execute "normal! o// "
 "   execute "normal! o// Made by ".real_name
-"   execute "normal! o// Login   <".login."@epitech.net>"
 "   execute "normal! o// "
 "   execute "normal! o// Started on  ".start_date." ". real_name
 "   execute "normal! o//"
@@ -80,7 +77,6 @@ function! s:insert_header_makefile()
 "   execute "normal! o## " .gatename. " for  in " .pathname
 "   execute "normal! o## "
 "   execute "normal! o## Made by ".real_name
-"   execute "normal! o## Login   <".login."@epitech.net>"
 "   execute "normal! o## "
 "   execute "normal! o## Started on  ".start_date." ". real_name
 "   execute "normal! o##"
@@ -108,7 +104,7 @@ function! s:insert_auto_makefile()
     endif
 
     let exe_name = "a.out"
-    execute "set paste" 
+    execute "set paste"
     execute "normal! o"
     execute "normal! o".compiler."       ?= ".default_compiler
     execute "normal! o".compiler_flags."   += ".default_compiler_flags
