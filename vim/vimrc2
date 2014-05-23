@@ -29,7 +29,7 @@ if has("autocmd")
   filetype plugin indent on
 endif
 
-"au! BufRead,BufNewFile *.haml         setfiletype haml 
+"au! BufRead,BufNewFile *.haml         setfiletype haml
 
 if has("gui_running")
   color torte
@@ -41,7 +41,7 @@ endif
 
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
-set autowrite		" Automatically save before commands 
+set autowrite		" Automatically save before commands
 set cindent
 set shiftwidth=4
 set nonumber		" this takes too much cols
@@ -66,9 +66,9 @@ endif
 set path+=include/
 set path+=src/
 
-" Epitech conf
-if filereadable($HOME."/.vimconfig/vimrc.epitech")
-   source $HOME/.vimconfig/vimrc.epitech
+" additionals functions
+if filereadable($HOME."/.vimconfig/vimrc.function")
+   source $HOME/.vimconfig/vimrc.function
 endif
 
 function! s:insert_auto_include_protector()

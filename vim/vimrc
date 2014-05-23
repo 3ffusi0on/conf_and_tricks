@@ -117,3 +117,9 @@ autocmd BufWinLeave * call clearmatches()
 
 " insert 1 character (Space key)
 noremap <silent> <space> :exe "normal i".nr2char(getchar())<CR>
+
+
+" additionals functions
+if filereadable($HOME."/.vimconfig/vimrc.function")
+   source $HOME/.vimconfig/vimrc.function
+endif
