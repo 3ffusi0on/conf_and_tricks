@@ -25,24 +25,9 @@ vicious.contrib = require("vicious.contrib")
 require("markup")
 --}}}
 
--- Laoding ----{{{
-function run_once(cmd)
-   findme = cmd                                                                                
-   firstspace = cmd:find(" ")
-   if firstspace then
-     findme = cmd:sub(0, firstspace-1)
-   end 
-   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")") 
-end
-
-run_once("xmodmap .xmodmaprc")
-run_once("nm-applet")
--- run_once("xchat")
---}}}
-
 --Theme--{{{
 local config_dir = awful.util.getdir("config")
-beautiful.init(config_dir .. "/themes/schnouki-zenburn.lua")
+beautiful.init(config_dir .. "/themes/schnouki.lua")
 --}}}
 
 -- {{{ Error handling
@@ -169,7 +154,7 @@ separator:set_image(config_dir .. "/icons/separator.png")
 -- Create a textclock widget
 mytextclock_icon = wibox.widget.imagebox()
 mytextclock_icon:set_image(config_dir .. "/icons/time.png")
-mytextclock = awful.widget.textclock("%H:%M")
+mytextclock = awful.widget.textclock("%H:%M - %e/%b ")
 -- Display on mouse detection. Format : Day n Month Year
 mytextclock_t = awful.tooltip({ objects = { mytextclock },
                                 timer_function = function()
@@ -449,6 +434,7 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
+    awful.key({ "Mod1"            }, "F4",     function (c) c:kill()                         end),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
@@ -531,8 +517,8 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "QNetSoul" },
-      properties = { tag = tags[1][8] } },
-    { rule = { class = "xchat" },
+      properties = { tag = tags[1][9] } },
+    { rule = { class = "XChat" },
       properties = { tag = tags[1][9] } },
 }
 -- }}}
