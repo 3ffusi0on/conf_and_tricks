@@ -1,3 +1,5 @@
+xorg
+xorg-xinit
 rxvt-unicode
 rxvt-unicode-terminfo
 vim
@@ -13,6 +15,12 @@ valgrind
 python
 ipython2
 chromium
-dropbox
 slock
 xchat
+alsa-utils
+flashplugin
+mplayer
+openssh
+wget
+htop
+eog
