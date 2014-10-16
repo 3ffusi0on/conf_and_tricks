@@ -105,3 +105,6 @@ pacman -Rsn $(pacman -Qqdt)
 
 # Delete all trailing whitespace (at the end of each line)
 :%s/\s\+$//
+
+# Paste from clipboard (normal mode)
+"+p
