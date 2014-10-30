@@ -21,6 +21,9 @@ git commit --amend -m "New commit message"
 git reset --soft HEAD^
 git commit -c ORIG_HEAD
 
+#How to Undo 'git add' before commit
+git reset <file>
+
 #How to squash my last X commits together using git?
 git rebase -i <after-this-commit>
 
@@ -108,3 +111,10 @@ pacman -Rsn $(pacman -Qqdt)
 
 # Paste from clipboard (normal mode)
 "+p
+
+#################################
+#           ArchLinux
+#################################
+
+#Change default applications
+-Edit /usr/share/applications/mimeinfo.cache
