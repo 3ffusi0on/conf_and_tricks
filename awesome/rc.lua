@@ -234,7 +234,7 @@ vicious.register(bat_widget, vicious.widgets.bat,
                        end
                     else
                        -- Discharging
-                       if pct <= 25 then
+                       if pct <= 5 then
 			    col = "LOW"
 			    if warnings == false then
 				notify('Warning', 'Low battery !')
@@ -246,7 +246,7 @@ vicious.register(bat_widget, vicious.widgets.bat,
 		       end
                        ret = markup.fg.color(colors[col], pct .. "% ↘")
                        if time ~= "N/A" then
-                          if pct <= 25 then col = "LOW"
+                          if pct <= 5 then col = "LOW"
                           elseif pct <= 50 then col = "low"
                           else col = "ok" end
                           ret = ret .. markup.fg.color(colors[col], " (" .. time .. ")")
@@ -364,14 +364,24 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-	awful.key({ modkey,       }, "F12", function () awful.util.spawn("/usr/bin/slock") end),
-	awful.key({ modkey,	  }, "b", function () awful.util.spawn("chromium --incognito") end),
-	awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer sset Master 5%+ unmute > /dev/null") end),
-	awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer sset Master 5%- unmute > /dev/null")  end),
-	awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer sset Master mute > /dev/null")  end),
-	awful.key({ }, "XF86HomePage", function () awful.util.spawn("chromium")  end),
-	awful.key({ }, "XF86Mail", function () awful.util.spawn("thunderbird")  end),
-	awful.key({ }, "XF86Calculator",function () awful.util.spawn("gnome-calculator")  end),
+        -- Volume Controll!
+        awful.key( {modkey, }, "F1", function() awful.util.spawn("amixer set Master toggle -c 1") end  ),
+        awful.key( {modkey, }, "F2", function() awful.util.spawn("amixer set Master 5- -c 1") end  ),
+        awful.key( {modkey, }, "F3", function() awful.util.spawn("amixer set Master 5+ -c 1") end  ),
+
+        -- Brightness
+        awful.key( {modkey, }, "F5", function() awful.util.spawn("brightness-wrapper '-'") end  ),
+        awful.key( {modkey, }, "F6", function() awful.util.spawn("brightness-wrapper '+'") end  ),
+
+
+        -- Lockscreen
+        awful.key({ modkey,       }, "F12", function () awful.util.spawn("/usr/bin/slock") end),
+
+        -- Web Browser
+        awful.key({ modkey,	  }, "b", function () awful.util.spawn("chromium --incognito") end),
+        awful.key({ modkey,	  }, "v", function () awful.util.spawn("chromium") end),
+
+        -- Layout navigation
         awful.key({ modkey,       }, "Left",   awful.tag.viewprev       ),
         awful.key({ modkey,       }, "Right",  awful.tag.viewnext       ),
         awful.key({ modkey,       }, "Escape", awful.tag.history.restore),
