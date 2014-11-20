@@ -46,6 +46,9 @@ git pull -s recursive -X theirs --rebase origin <BranchName>
 git diff stash@{<number>} master
 git stash show -p stash@{<number>}
 
+#How to clone into a non-empty directory
+git init && git remote add origin <path of the repo> && git fetch
+
 #################################
 #           ZSH / BASH
 #################################
