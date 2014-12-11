@@ -12,6 +12,9 @@ find -type f -iname \*.mp3 > playlist.txt && mplayer -shuffle -playlist playlist
 #           GIT
 #################################
 
+# www.github.com Markdowns
+https://guides.github.com/features/mastering-markdown/
+
 #How to undo the last git add?
 git reset
 
