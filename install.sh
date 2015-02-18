@@ -24,6 +24,13 @@ function check_package {
 # Copy files
 ##############
 
+# Xinit
+########
+echo "Configuring X..."
+check_package "awesome"
+cp ./xinitrc $HOME/.xinitrc
+ln -s $HOME/.xinitrc $HOME/.session
+
 # Git
 ######
 echo "Configuring git..."
