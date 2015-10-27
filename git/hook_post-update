@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# Hook on repository update managing two branches dev and master
+# in order to supervise production and development environnement.
+#
+
+echo $1
+echo "*Updating repository using Hook*"
+
+
+case " $1 " in
+*'refs/heads/dev'*)
+        GIT_WORK_TREE=/srv/www/ git checkout dev dev
+        echo "Dev environnement updated"
+        ;;
+esac
+
+case " $1 " in
+*'refs/heads/master'*)
+        GIT_WORK_TREE=/srv/www/ git checkout master prod
+        echo "Master environnement updated"
+        ;;
+esac
