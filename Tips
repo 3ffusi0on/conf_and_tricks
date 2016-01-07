@@ -52,6 +52,12 @@ git stash show -p stash@{<number>}
 #How to clone into a non-empty directory
 git init && git remote add origin <path of the repo> && git fetch
 
+#How to delete a branch
+ #local
+  git branch -D <BranchName>
+ #server
+  git push origin --delete <BranchName>
+
 #################################
 #           ZSH / BASH
 #################################
