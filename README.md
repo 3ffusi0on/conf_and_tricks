@@ -1,4 +1,6 @@
 conf_and_tricks
 ===============
 
-Coming soon !
+This repo contains lot of usefull tips, dotfiles, and configuration for tools most developers use everyday.
+
+Feel free to propose new things ;-)
