@@ -58,6 +58,10 @@ git init && git remote add origin <path of the repo> && git fetch
  #server
   git push origin --delete <BranchName>
 
+#How to ignore changed files (tracked)
+ git update-index --assume-unchanged <file>
+ #revert
+ git update-index --no-assume-unchanged <file>
 #################################
 #           ZSH / BASH
 #################################
