@@ -33,6 +33,9 @@
 * How to remove local commited branches ?
 > git remote prune origin
 
+* How to remove already merged branches with list edition before actualy doing it ?
+> git branch --merged >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches
+
 * Undo local branch delete
   * find the <sha1> of the branch with:
    > git reflog
