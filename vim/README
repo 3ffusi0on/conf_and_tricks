@@ -1,2 +1,0 @@
-Rename de vimconfig directory to ~/.vim in order to make it working
-Vim is automatically charging contenct in the pluggin, colors, syntax... directories.
