@@ -26,3 +26,6 @@ export PS1='\[\e[0;36m\][\A] \h:\[\e[0m\e[0;32m\]\W\[\e[1;33m\]$(__git_ps1 " (%s
 
 # Unrelated but useful: avoid auto-édit on successful merges, starting with Git 2.0
 export GIT_MERGE_AUTOEDIT=no
+
+# Avoid duplicates in history
+export HISTCONTROL=ignoredups
