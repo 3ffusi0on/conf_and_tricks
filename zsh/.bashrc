@@ -1,14 +1,29 @@
-alias ls='ls --color=auto'
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -1 --ignore="*.o"'
-alias grep="grep --color=auto"
-alias grepp="grep -Hn"
-alias gcl=" git branch --merged >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches"
-alias g='git'
-alias gx='git update-index --add --chmod=+x'
+#load Aliases
+if [ -e $HOME/.bash_aliases ]; then
+    source $HOME/.bash_aliases
+fi
 
 export PROMPT_COMMAND='history -a'
+
+env=~/.ssh/agent.env
+
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+agent_start () {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null ; }
+
+agent_load_env
+
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    agent_start
+    ssh-add ~/.ssh/id_ed25519
+fi
+
+unset env
 
 # CONFIGURE THE PROMPT
 # ============================
@@ -20,7 +35,7 @@ export GIT_PS1_HIDE_IF_PWD_IGNORED=1
 
 # Colorful prompt for Bash!
 export PS1='\[\e[0;36m\][\A] \h:\[\e[0m\e[0;32m\]\W\[\e[1;33m\]$(__git_ps1 " (%s)")\[\e[0;37m\] \$\[\e[0m\] '
- 
+
 # Or if you want the basic prompt, no colors, no timestamps, just regular + Git info:
 # export PS1='\h:\W$(__git_ps1 " (%s)")\$ '
 
