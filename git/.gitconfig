@@ -1,53 +1,62 @@
 [user]
-	email =
-	name =
-[includeIf "gitdir:~/dir/"]
-    path = .gitconfig-personalized
+    email =
+    name =
+[includeIf "gitdir:~/CustomDir/"]
+    path = ~/.gitconfig-custom
 [alias]
-        ci = commit
-        co = checkout
-        nb = checkout -b
-        st = status -s
-        br = branch
-        g = grep
-        d = diff
-        cp = cherry-pick
-        r = rebase
-        ri = rebase -i
-        rs = rebase --skip
-        ra = rebase --abort
-        ma = merge --abort
-        pl = pull —rebase
-        l = log --pretty=oneline --abbrev-commit
-        lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-        lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-        lg = !"git lg1"
-        rm-deleted = !git rm $(git ls-files --deleted)
-        pushup = !git push --set-upstream origin `git symbolic-ref --short HEAD`
-        week = log --after 7.days.ago --author="Pierre" --pretty=oneline --abbrev-commit
+    ci = commit
+    co = checkout
+    nb = checkout -b
+    st = status -s
+    br = branch
+    g = grep
+    d = diff
+    cp = cherry-pick
+    r = rebase
+    ri = rebase -i
+    rs = rebase --skip
+    ra = rebase --abort
+    ma = merge --abort
+    pl = pull —rebase
+    l = log --pretty=oneline --abbrev-commit
+    lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    lg = !"git lg1"
+    rm-deleted = !git rm $(git ls-files --deleted)
+    pushup = !git push --set-upstream origin `git symbolic-ref --short HEAD`
+    week = log --after 7.days.ago --author="Pierre" --pretty=oneline --abbrev-commit
 [core]
-	autocrlf = input
-	pager = diff-so-fancy | less --tabs=4 -RFX
-	editor = vim
+    autocrlf = input
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    editor = vim
+[http]
+    postBuffer = 1048576000
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = yellow
+    frag = magenta bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 [pull]
-	rebase = preserve
+    rebase = merges
 [push]
-	default = current
-	autoSetupRemote = true
+    default = current
+    autoSetupRemote = true
+[diff "odt"]
+    textconv = odt2txt
+    binary = true
+[gui]
+    recentrepo =
+[fetch]
+    prune = true
