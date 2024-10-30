@@ -25,6 +25,7 @@
     rm-deleted = !git rm $(git ls-files --deleted)
     pushup = !git push --set-upstream origin `git symbolic-ref --short HEAD`
     week = log --after 7.days.ago --author="Pierre" --pretty=oneline --abbrev-commit
+    whoami = config --get user.username
 [core]
     autocrlf = input
     pager = diff-so-fancy | less --tabs=4 -RFX
