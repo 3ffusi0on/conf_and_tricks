@@ -1,6 +1,7 @@
 [user]
     email =
     name =
+    username =
 [includeIf "gitdir:~/CustomDir/"]
     path = ~/.gitconfig-custom
 [alias]
@@ -24,8 +25,8 @@
     lg = !"git lg1"
     rm-deleted = !git rm $(git ls-files --deleted)
     pushup = !git push --set-upstream origin `git symbolic-ref --short HEAD`
-    week = log --after 7.days.ago --author="Pierre" --pretty=oneline --abbrev-commit
-    whoami = config --get user.username
+    week = log --after 7.days.ago --author="ToUpdate" --pretty=oneline --abbrev-commit
+    whoami = "!echo \"$(git config user.username):$(git config user.name) ($(git config user.email))\""
 [core]
     autocrlf = input
     pager = diff-so-fancy | less --tabs=4 -RFX
