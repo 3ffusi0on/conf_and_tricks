@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Need to be combined with git() function in .bash_functions
+
 # Placeholder Gitlab project IDs
 SOURCE_PROJECT_ID=
 TARGET_PROJECT_ID=

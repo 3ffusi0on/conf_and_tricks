@@ -7,21 +7,12 @@
 #### Variables# {{{
 export EDITOR=vim
 export BROWSER=chromium
-    #Ruby PATH
-export PATH="$PATH":/home/simon_p/.gem/ruby/2.1.0/bin
-    #Lua PATH
-export LUA_DIR=/usr/lib/lua
 # }}}
 
 # Alias# {{{
 ## I'm very lazy
 alias g='git'
 alias c='cat'
-alias p='ping www.google.fr'
-
-## usefull protection ;-)
-alias rm='mkdir -p ~/Trash/$PWD ; mv -t ~/Trash/$PWD'
-alias rm_='/bin/rm'
 
 alias ls='ls --color=auto'
 alias ll='ls -l'
