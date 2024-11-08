@@ -1,10 +1,15 @@
 #!/bin/sh
 
 # Need to be combined with git() function in .bash_functions
+# Project IDs
 
-# Placeholder Gitlab project IDs
+# Gitlab Project IDs
 SOURCE_PROJECT_ID=
 TARGET_PROJECT_ID=
+
+# Remotes
+SOURCE_REMOTE=origin
+TARGET_REMOTE=upstream
 
 REPO_URL=$(git config --get remote.origin.url)
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
@@ -12,8 +17,20 @@ BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 # URL encode the branch name and remove any trailing newline
 ENCODED_BRANCH_NAME=$(echo -n $BRANCH_NAME | jq -sRr @uri)
 
+# Get the origin repository path and domain
+ORIGIN_URL=$(git config --get remote.$SOURCE_REMOTE.url)
+if [ -n "$ORIGIN_URL" ]; then
+  if echo "$ORIGIN_URL" | grep -q '@'; then
+    # SSH URL
+    ORIGIN_REPO_PATH=$(echo $ORIGIN_URL | sed -e 's/.*@[^:]*:\([^\.]*\)\.git/\1/')
+  else
+    # HTTPS URL
+    ORIGIN_REPO_PATH=$(echo $ORIGIN_URL | sed -e 's/.*:\/\/[^\/]*\///' -e 's/\.git$//')
+  fi
+fi
+
 # Get the upstream repository path and domain
-UPSTREAM_URL=$(git config --get remote.upstream.url)
+UPSTREAM_URL=$(git config --get remote.$TARGET_REMOTE.url)
 if [ -n "$UPSTREAM_URL" ]; then
   if echo "$UPSTREAM_URL" | grep -q '@'; then
     # SSH URL
@@ -26,5 +43,5 @@ if [ -n "$UPSTREAM_URL" ]; then
   fi
 fi
 
-echo "Push successful!"
-echo "Consider creating a merge request: https://$DOMAIN/$TARGET_REPO_PATH/-/merge_requests/new?change_branches=true&merge_request%5Bsource_branch%5D=$ENCODED_BRANCH_NAME&merge_request%5Bsource_project_id%5D=$SOURCE_PROJECT_ID&merge_request%5Btarget_branch%5D=master&merge_request%5Btarget_project_id%5D=$TARGET_PROJECT_ID"
+echo "\nPush successful!\n"
+echo "Consider creating a merge request: https://$DOMAIN/$ORIGIN_REPO_PATH/-/merge_requests/new?change_branches=true&merge_request%5Bsource_branch%5D=$ENCODED_BRANCH_NAME&merge_request%5Bsource_project_id%5D=$SOURCE_PROJECT_ID&merge_request%5Btarget_branch%5D=master&merge_request%5Btarget_project_id%5D=$TARGET_PROJECT_ID"
