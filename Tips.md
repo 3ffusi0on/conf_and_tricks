@@ -1,131 +1,52 @@
+# Random
 
-#           Random
+- Copy text to the clipboard
 
-* copy to the clic board
-> xclip -sel clip < TextToCopy
+  > `xclip -sel clip < TextToCopy`
 
-* Random playlist mplayer
-> find -type f -iname \*.mp3 > playlist.txt && mplayer -shuffle -playlist playlist.txt
+- Create and play a random MP3 playlist
+  > `find -type f -iname \*.mp3 > playlist.txt && mplayer -shuffle -playlist playlist.txt`
 
-#           GIT
+# Git
 
-* Github Markdowns
-> https://guides.github.com/features/mastering-markdown/
+- Remove already merged branches with preview and editing
 
-* How to undo the last git add?
-> git reset
+  > `git branch --merged >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches`
 
-* How to edit an incorrect commit message in Git?
-> git commit --amend -m "New commit message"
-  * OR
-> git reset --soft HEAD^
-> git commit -c ORIG_HEAD
+- Restore a deleted local branch
 
-* How to Undo 'git add' before commit
-> git reset <file>
+  1. Find the SHA1 of the deleted branch
 
-* How to squash my last X commits together using git?
-> git rebase -i <after-this-commit>
+     > `git reflog`
 
-* How to cancel a local git commit?
-> git reset HEAD^
+  2. Recreate the branch at that commit
+     > `git branch <BranchName> <sha1>`
 
-* How to remove local commited branches ?
-> git remote prune origin
+- Pull remote changes, preferring their version without merge conflicts
 
-* How to remove already merged branches with list edition before actualy doing it ?
-> git branch --merged >/tmp/merged-branches && vi /tmp/merged-branches && xargs git branch -d </tmp/merged-branches
+  > `git pull -s recursive -X theirs --rebase origin <BranchName>`
 
-* Undo local branch delete
-  * find the <sha1> of the branch with:
-   > git reflog
-  * then
-   > git branch <BranchName> <sha1>
+- View diff against a stash
 
-* Pull their version without merge conflicts
-> git pull -s recursive -X theirs --rebase origin <BranchName>
+  > `git diff stash@{<number>} master` > `git stash show -p stash@{<number>}`
 
-* Git diff against a stash
-> git diff stash@{<number>} master
-> git stash show -p stash@{<number>}
+- Ignore changes to tracked files
 
-* How to clone into a non-empty directory
-> git init && git remote add origin <path of the repo> && git fetch
+  1. Set file to be ignored
 
-* How to delete a branch
- * local
-   > git branch -D <BranchName>
- * server
-   > git push origin --delete <BranchName>
+     > `git update-index --assume-unchanged <file>`
 
-* How to ignore changed files (tracked)
-> git update-index --assume-unchanged <file>
- * revert
-> git update-index --no-assume-unchanged <file>
+  2. Revert to tracking changes
+     > `git update-index --no-assume-unchanged <file>`
 
-* How to Find the parent branch of a Git branch 
-> git show-branch | grep '\*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//'
+- Find the parent branch of a Git branch
+  > `git show-branch | grep '\*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//'`
 
-#           ZSH / BASH
+# Vim
 
-* clear the entire line
-> [Ctrl][u]
+- Delete all trailing whitespace at the end of each line
 
-* delete the word IN FRONT of the cursor
-> [Ctrl][w]
+  > `:%s/\s\+$//`
 
-* Undo the last change
-> [Ctrl][_]
-
-* Stop search
-> [Ctrl][j]
-
-* Delete the word AFTER the cursor
-> [Alt][d]
-
-* Move one word
-> [Alt][b]
-> [Alt][f]
-
-* Complete and search in history
-> [Alt][n]
-> [Alt][p]
-
-* Completing history word
-> [Alt][,]
-
-* Move to next space
-> [Alt][l]
-
-* Add '' around all the current text
-> [Alt][']
-
-* Swap two word
-> [Alt][t]
-
-* Capitalize the next word
-> [Alt][u]
-
-* Open man for 1st word
-> [Alt][h]
-
-#           Pacman
-
-* Installed as dependencies for packages that are no longer installed
-> pacman -Qdt
-
-* Remove all of those
-> pacman -Rsn $(pacman -Qqdt)
-
-#           Vim
-
-* Delete all trailing whitespace (at the end of each line)
-> :%s/\s\+$//
-
-* Paste from clipboard (normal mode)
-> "+p
-
-#           ArchLinux
-
-* Change default applications
-> -Edit /usr/share/applications/mimeinfo.cache
+- Paste from clipboard in normal mode
+  > `"+p`
